@@ -31,8 +31,8 @@ func NewHTTPClient() *http.Client {
 	transport := &http.Transport{
 		Dial: (&net.Dialer{
 			Timeout:   connectTimeout,
+			KeepAlive: keepaliveTimeout,
 		}).Dial,
-		DisableKeepAlives: true,
 		MaxIdleConnsPerHost:   maxIdleConnectionsPerHost,
 		ResponseHeaderTimeout: responseReadTimeout,
 		TLSClientConfig:       &tls.Config{InsecureSkipVerify: true},
